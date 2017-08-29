@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap-table.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/student.css}">
+</head>
+<body>
+    <div class="panel-body" style="padding-bottom:0px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">添加学生</div>
+            <div class="panel-body">
+                <form id="addStudentForm">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <label class="control-label">姓名</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input name="name" class="form-control"/>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="control-label">性别</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input name="sex" class="form-control"/>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="control-label">住址</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input name="address" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <label class="control-label">语文</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input name="chinese" class="form-control"/>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="control-label">数学</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input name="math" class="form-control"/>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="control-label">英语</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input name="english" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <button id="submitStudentForm" type="button" class="btn btn-primary">添加学生</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="toolbar" class="btn-group">
+            <button id="btn_delete" type="button" class="btn btn-danger btn-flat">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 删除学生
+            </button>
+            <button id="btn_update" type="button" class="btn btn-primary btn-flat">
+                <span class="glyphicon glyphicon glyphicon-open" aria-hidden="true"></span> 编辑学生
+            </button>
+        </div>
+        <table id="tables"></table>
+        <div id="edu_modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="modal_edu_title">学生修改</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label id="label_info" style="line-height: 35px;color: red;">
+
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label style="line-height: 35px;">
+                                    姓名
+                                </label>
+                            </div>
+                            <div class="col-md-10">
+                                <input name="name" id="input_edu_name" type="text" class="form-control" placeholder="请输入学历名称"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label style="line-height: 35px;">
+                                    性别
+                                </label>
+                            </div>
+                            <div class="col-md-10">
+                                <input name="name" type="text" class="form-control" placeholder="请输入学历名称"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label style="line-height: 35px;">
+                                    住址
+                                </label>
+                            </div>
+                            <div class="col-md-10">
+                                <input name="name" type="text" class="form-control" placeholder="请输入学历名称"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label style="line-height: 35px;">
+                                    语文
+                                </label>
+                            </div>
+                            <div class="col-md-10">
+                                <input name="name" type="text" class="form-control" placeholder="请输入学历名称"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label style="line-height: 35px;">
+                                    数学
+                                </label>
+                            </div>
+                            <div class="col-md-10">
+                                <input name="name" type="text" class="form-control" placeholder="请输入学历名称"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label style="line-height: 35px;">
+                                    英语
+                                </label>
+                            </div>
+                            <div class="col-md-10">
+                                <input name="name" type="text" class="form-control" placeholder="请输入学历名称"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-flat" data-dismiss="modal">
+                            <span class="glyphicon glyphicon-remove"></span>关闭
+                        </button>
+                        <button id="btn_add_edu" onclick="addEdu()" type="button" class="btn btn-success btn-flat">
+                            <span class="glyphicon glyphicon-floppy-save"></span>保存
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- jQuery 3.1.1 -->
+<script th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<!-- Bootstrap -->
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<!-- Bootstrap-Table -->
+<script th:src="@{/js/bootstrap-table.min.js}"></script>
+<script th:src="@{/js/bootstrap-table-zh-CN.min.js}"></script>
+<!--Custom JS-->
+<script th:src="@{/js/student.js}"></script>
+</html>
